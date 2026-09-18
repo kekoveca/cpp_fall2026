@@ -2,6 +2,8 @@
 
 void selection_sort(int n, int *arr, bool reverse = false)
 {
+    // На каждом проходе выбираем крайний элемент из неотсортированной части.
+    // Для обычного порядка это максимум, для обратного — минимум.
     for (int i = n - 1; i > 0; --i)
     {
         int idx = 0;
@@ -15,6 +17,7 @@ void selection_sort(int n, int *arr, bool reverse = false)
             }
         }
 
+        // Ставим выбранный элемент в конец текущей части массива.
         int tmp = arr[idx];
         arr[idx] = arr[i];
         arr[i] = tmp;
@@ -31,6 +34,7 @@ int main()
     int counter_nonneg = 0;
     int counter_negative = 0;
 
+    // Разделяем входные числа: ноль относится к неотрицательным.
     for (int i = 0; i < n; ++i)
     {
         int temp = 0;
@@ -48,9 +52,11 @@ int main()
         }
     }
 
+    // Неотрицательные сортируем по возрастанию, отрицательные по убыванию.
     selection_sort(counter_nonneg, nonneg);
     selection_sort(counter_negative, negative, true);
 
+    // Сначала выводим одну группу, затем другую.
     for (int i = 0; i < counter_nonneg; ++i)
     {
         std::cout << nonneg[i] << " ";
